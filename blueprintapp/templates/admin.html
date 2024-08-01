@@ -1,0 +1,15 @@
+{% extends 'base.html' %} {% block title %}Index page{% endblock %} {% block content %}
+<h1>Hello, Flask</h1>
+<p>Welcome to the Admin Dashboard</p>
+
+{% if current_user.is_authenticated %}
+<h3>Hello {{ current_user.username }}!</h3>
+<a href="{{ url_for('logout') }}">Logout</a>
+{% else %}
+<h3>Hello Guest!</h3>
+<a href="{{ url_for('login') }}">Login</a>
+<a href="{{ url_for('register') }}">Register</a>
+{% endif %}
+
+<script src="/js/hello.js"></script>
+{% endblock %}

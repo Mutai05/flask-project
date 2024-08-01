@@ -1,0 +1,20 @@
+{% extends 'base.html' %} {% block title %}Index page{% endblock %} {% block content %}
+<h1>Hello, Flask</h1>
+<p>Welcome to Flask world!</p>
+
+<img src="/img/mac-3.jpg" alt="Mac Desktop" />
+<button class="btn btn-primary">ABOUT US</button>
+
+<p>{{ message }}</p>
+<a href="{{ url_for('set_data') }}">Set Session Data</a>
+<a href="{{ url_for('get_data') }}">Get Session Data</a> <br />
+
+<a href="{{ url_for('clear_session') }}">Clear Session</a> <br />
+
+<a href="{{ url_for('set_cookie') }}">Set Cookie</a>
+<a href="{{ url_for('get_cookie') }}">Get Cookie</a><br />
+
+<a href="{{ url_for('remove_cookie') }}">Remove Cookie</a>
+
+<script src="/js/hello.js"></script>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'base.html' %} {% block title %}Index page{% endblock %} {% block content %}
+<p>List of Leads</p>
+
+<ul>
+  {% for person in people %}
+  <li>
+    {{ person }}
+    <a href="{{ url_for('details', pid=person.pid) }}">Details</a>
+    <button onclick="deletePerson({{ person.pid }})">Delete</button>
+  </li>
+  {% endfor %}
+</ul>
+
+<p>Add User</p>
+
+<form method="POST" action="{{ url_for('leads') }}">
+  <label for="name">Name</label>
+  <input type="text" name="name" /><br />
+  <label for="age">Age</label>
+  <input type="number" name="age" /><br />
+  <label for="job">Job</label>
+  <input type="text" name="job" /><br />
+  <button type="submit" value="Create">Submit</button>
+</form>
+
+<script type="text/javascript">
+  function deletePerson(pid) {
+    fetch('{{ url_for("delete", pid="") }}' + pid, {
+      method: "DELETE",
+    })
+      .then((response) => {
+        if (response.ok) {
+          window.location.reload();
+        } else {
+          console.error("Failed to delete user with pid: ", pid);
+        }
+      })
+      .catch((error) => {
+        console.error("Error during fetch:", error);
+      });
+  }
+</script>
+
+{% endblock %}
